@@ -1,0 +1,284 @@
+@import 'utf-8';
+@import 'fonts.css';
+@import 'animate.css';
+
+:root {
+  --accent-color: #d5001c;
+  --bg-gray: #f2f3f4;
+  --line-gray: #e3e4e4;
+  --text-color: rgba(0, 0, 0, 1);
+  --heading-color: #333;
+  --grad-color1: rgba (25, 31, 34, 0.3);
+  --grad-color2: rgba(25, 31, 34, 0);
+  --btn-color-default: #333;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+}
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: 'PorscheNextWCy', Helvetica, Arial, sans-serif;
+}
+.page {
+  flex: 1;
+}
+.container {
+  width: 1170px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main-header {
+  box-shadow: 0 2px 3px hsla(0, 0%, 0%, 0.2);
+}
+.logo-line {
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 0.75rem;
+}
+.logo-line::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--line-gray);
+}
+.logo {
+  display: block;
+  width: 123px;
+  background: #fff;
+  transform: translateY(17px);
+}
+.logo-img {
+  display: block;
+  width: 100%;
+}
+.menu {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+.main-menu {
+  display: flex;
+  justify-content: flex-start;
+}
+.main-menu-link {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  color: var(--text-color);
+}
+.main-menu-link:hover {
+  color: var(--accent-color);
+}
+.scene {
+  padding: 4rem 1rem 2rem;
+  background: var(--bg-gray);
+  text-align: center;
+}
+.car {
+  position: relative;
+  display: inline-block;
+  z-index: 1;
+  cursor: pointer;
+  transition: filter 0.5s ease-in-out;
+}
+.car:hover {
+  transition: filter 0.5s ease-in-out;
+  filter: hue-rotate(100deg);
+}
+.car-body {
+  display: block;
+  width: 100%;
+}
+.car-shadow {
+  display: block;
+  width: 100%;
+  position: absolute;
+  bottom: calc(-24 * 100% / 204);
+  opacity: 0.75;
+  z-index: -1;
+}
+.car-wheel-front {
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  width: calc(120 * 100% / 741);
+  height: calc(120 * 100% / 204);
+  right: calc(102 * 100% / 741);
+  bottom: calc(-18 * 100% / 204);
+}
+.car-wheel-front-disc,
+.car-wheel-front-rotor,
+.car-wheel-front-caliper {
+  display: block;
+  width: 100%;
+  position: absolute;
+}
+.car-wheel-rear {
+  display: inline-block;
+  position: absolute;
+  border-radius: 50%;
+  overflow: hidden;
+  width: calc(123 * 100% / 741);
+  height: calc(123 * 100% / 204);
+  left: calc(94 * 100% / 741);
+  bottom: calc(-18 * 100% / 204);
+}
+.car-wheel-rear-disc,
+.car-wheel-rear-rotor,
+.car-wheel-rear-caliper {
+  display: block;
+  width: 100%;
+  position: absolute;
+}
+
+@keyframes wheel-spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(359.9deg);
+  }
+}
+.wheel-spin {
+  animation: wheel-spin 1s linear;
+}
+
+@keyframes car-shake {
+  from,
+  to {
+    transform: rotate(0) translateY(0);
+  }
+  50% {
+    transform: rotate(0.5deg) translateY(1px);
+  }
+}
+.car-shake {
+  animation: car-shake 1s 2 ease-in-out;
+}
+.headline {
+  text-align: center;
+  color: var(--heading-color);
+  font-size: 2rem;
+  padding: 1rem;
+  font-weight: 100;
+}
+.models {
+  display: grid;
+}
+.model-main {
+  grid-area: 1/1/3/3;
+}
+.model-item {
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+  overflow: hidden;
+}
+.model-img {
+  width: 100%;
+  display: block;
+}
+.model-item:hover,
+.model-img {
+  transform: scale(1.2);
+  transition: transform 0.5s ease-in-out;
+}
+.model-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--grad-color1), var());
+  padding: 1rem 2rem 2rem;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.model-name {
+  font-size: 3.75rem;
+}
+.model-price {
+  font-size: 1.5rem;
+  letter-spacing: 0.025em;
+}
+.model-price::before {
+  content: 'от';
+  padding: 0 0.5rem;
+}
+.model-price::after {
+  content: 'руб. вкл. НДС';
+  padding: 0 0.5rem;
+}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+  margin: 5px;
+  padding: 0.75rem 1.25rem;
+  transition: all 0.5s ease-in-out;
+}
+.btn-default {
+  background: #fff;
+  color: var(--btn-color-default);
+  border: 1px solid #fff;
+}
+.btn-bordered {
+  color: #fff;
+  border: 1px solid #fff;
+}
+.btn-default:hover {
+  background: var(--accent-color);
+  color: #fff;
+  border-color: var(--accent-color);
+}
+.btn-bordered:hover {
+  color: #fff;
+  border-color: var(--accent-color);
+}
+@media screen and (max-width: 767.98px) {
+  .models {
+    grid-template-columns: repeat(1fr);
+  }
+  .model-main {
+    grid-area: 1/1/2/2;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1199.98px) {
+  .models {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .model-main {
+    grid-area: 1/1/2/3;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199.98px) {
+  .models {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .model-main {
+    grid-area: 1/1/2/3;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .models {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .model-main {
+    grid-area: 1/1/3/3;
+  }
+}
